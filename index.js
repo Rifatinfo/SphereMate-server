@@ -48,6 +48,13 @@ async function run() {
       const result = await jobsCollection.findOne(query);
       res.send(result);
     })
+     // send bid data in server 
+    app.post('/bid', async (req, res) => {
+      const bidDate = req.body;
+      console.log(bidDate);
+      const result = await bidsCollection.insertOne(bidDate);
+      res.send(result);
+    })
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
