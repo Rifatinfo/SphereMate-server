@@ -32,6 +32,7 @@ async function run() {
   try {
     const jobsCollection = client.db('solo').collection('jobs');
     const bidsCollection = client.db('solo').collection('bids');
+    
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
 
@@ -53,6 +54,13 @@ async function run() {
       const bidDate = req.body;
       console.log(bidDate);
       const result = await bidsCollection.insertOne(bidDate);
+      res.send(result);
+    })
+     // send job data in server 
+    app.post('/job', async (req, res) => {
+      const jobDate = req.body;
+      console.log(jobDate);
+      const result = await jobsCollection.insertOne(jobDate);
       res.send(result);
     })
 
